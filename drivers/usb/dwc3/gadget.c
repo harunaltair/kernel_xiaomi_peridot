@@ -565,7 +565,6 @@ static int dwc3_gadget_start_config(struct dwc3_ep *dep)
 {
 	struct dwc3_gadget_ep_cmd_params params;
 	struct dwc3		*dwc;
-	struct dwc3_ep		*dep;
 	u32			cmd;
 	int			i;
 	int			ret;
