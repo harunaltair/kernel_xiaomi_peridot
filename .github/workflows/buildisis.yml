@@ -1,4 +1,4 @@
-name: buildisis
+name: buildisis v1
 
 on:
   push:
