@@ -10,12 +10,12 @@ on:
         required: false
       KERNEL_TREE:
         description: 'Kernel Tree'
-        default: 'https://github.com/ahmedtohamy1/kernel_xiaomi_peridot'
+        default: 'https://github.com/harunaltair/kernel_xiaomi_peridot'
         required: true
       KERNEL_TREE_BRANCH:
         description: 'Kernel Tree Branch'
         required: true
-        default: 'stable-r1'
+        default: 'stable-r1.9'
       CODENAME:
         description: 'Phone Codename'
         default: 'peridot'
