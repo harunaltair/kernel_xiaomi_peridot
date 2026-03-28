@@ -76,10 +76,24 @@ jobs:
 
     - name: Clone kernel source
       run: |
-        git clone --depth=1 ${{ github.event.inputs.KERNEL_TREE }} -b ${{ github.event.inputs.KERNEL_TREE_BRANCH }} kernel_tree
-        echo "kernel-folder=$(pwd)/kernel_tree" >> $GITHUB_OUTPUT
-      working-directory: ${{ steps.workspace.outputs.workspace-folder }}
-      id: kernel
+       KERNEL_TREE="${{ github.event.inputs.KERNEL_TREE }}"
+       KERNEL_TREE_BRANCH="${{ github.event.inputs.KERNEL_TREE_BRANCH }}"
+
+       if [ -z "$KERNEL_TREE" ]; then
+        KERNEL_TREE="https://github.com/harunaltair/kernel_xiaomi_peridot"
+       fi
+
+       if [ -z "$KERNEL_TREE_BRANCH" ]; then
+        KERNEL_TREE_BRANCH="stable-r1.9"
+       fi
+
+       echo "Cloning: $KERNEL_TREE (branch: $KERNEL_TREE_BRANCH)"
+
+       git clone --depth=1 $KERNEL_TREE -b $KERNEL_TREE_BRANCH kernel_tree
+
+       echo "kernel-folder=$(pwd)/kernel_tree" >> $GITHUB_OUTPUT
+       working-directory: ${{ steps.workspace.outputs.workspace-folder }}
+       id: kernel
 
     - name: Building kernel
       run: |
