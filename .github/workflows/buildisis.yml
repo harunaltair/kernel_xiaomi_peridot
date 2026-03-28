@@ -75,6 +75,7 @@ jobs:
       id: tools
 
     - name: Clone kernel source
+      working-directory: ${{ steps.workspace.outputs.workspace-folder }}
       run: |
        KERNEL_TREE="${{ github.event.inputs.KERNEL_TREE }}"
        KERNEL_TREE_BRANCH="${{ github.event.inputs.KERNEL_TREE_BRANCH }}"
@@ -86,8 +87,6 @@ jobs:
        if [ -z "$KERNEL_TREE_BRANCH" ]; then
         KERNEL_TREE_BRANCH="stable-r1.9"
        fi
-
-       echo "Cloning: $KERNEL_TREE (branch: $KERNEL_TREE_BRANCH)"
 
        git clone --depth=1 $KERNEL_TREE -b $KERNEL_TREE_BRANCH kernel_tree
 
