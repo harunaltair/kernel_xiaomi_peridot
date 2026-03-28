@@ -1,8 +1,6 @@
 name: buildisis v1
 
 on:
-  push:
-   branches: [ stable-r1.9 ]
   workflow_dispatch:
     inputs:
       BUILD_TITLE:
